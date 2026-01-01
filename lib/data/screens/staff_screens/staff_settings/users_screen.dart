@@ -39,6 +39,7 @@ class _UsersScreenState extends State<UsersScreen> {
 
   @override
   Widget build(BuildContext context) {
+    const count = 1;
     return Scaffold(
       appBar: AppBar(title: Text('User Settings')),
       body: Padding(
@@ -51,6 +52,7 @@ class _UsersScreenState extends State<UsersScreen> {
             2: IntrinsicColumnWidth(),
             3: IntrinsicColumnWidth(),
             4: IntrinsicColumnWidth(),
+            5: IntrinsicColumnWidth(),
           },
           children: <TableRow>[
             TableRow(
@@ -58,6 +60,12 @@ class _UsersScreenState extends State<UsersScreen> {
                 color: const Color.fromARGB(96, 41, 40, 40),
               ),
               children: <Widget>[
+                TableCell(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('S. No.'),
+                  ),
+                ),
                 TableCell(
                   child: Padding(
                     padding: EdgeInsets.all(8.0),
@@ -94,6 +102,12 @@ class _UsersScreenState extends State<UsersScreen> {
             for (var user in users)
               TableRow(
                 children: <Widget>[
+                  TableCell(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text('$count'),
+                    ),
+                  ),
                   TableCell(
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
