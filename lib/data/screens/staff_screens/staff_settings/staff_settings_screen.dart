@@ -22,7 +22,8 @@ class _StaffSettingsScreenState extends State<StaffSettingsScreen> {
           bottom: TabBar(
             tabs: [
               Tab(text: 'Users'),
-              Tab(text: 'New User'),
+              //Tab(text: 'New User'),
+              Tab(text: 'System Settings'),
               Tab(text: 'Others'),
             ],
           ),

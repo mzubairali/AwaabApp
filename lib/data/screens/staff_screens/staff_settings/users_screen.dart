@@ -14,7 +14,10 @@ class _UsersScreenState extends State<UsersScreen> {
 
   getUsers() async {
     try {
-      final result = await supabase.from('user_profile').select();
+      final result = await supabase
+          .from('user_profile')
+          .select()
+          .order('created_at', ascending: false);
 
       //final User? user = supabase.auth.currentUser;
       //final Map<String, dynamic>? userMetadata = user?.userMetadata;
@@ -36,7 +39,105 @@ class _UsersScreenState extends State<UsersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Scaffold(
+      appBar: AppBar(title: Text('User Settings')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Table(
+          border: TableBorder.all(color: Colors.black45),
+          columnWidths: const <int, TableColumnWidth>{
+            0: IntrinsicColumnWidth(),
+            1: IntrinsicColumnWidth(),
+            2: IntrinsicColumnWidth(),
+            3: IntrinsicColumnWidth(),
+            4: IntrinsicColumnWidth(),
+          },
+          children: <TableRow>[
+            TableRow(
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(96, 41, 40, 40),
+              ),
+              children: <Widget>[
+                TableCell(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('Name'),
+                  ),
+                ),
+                TableCell(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('e-mail'),
+                  ),
+                ),
+                TableCell(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('Role'),
+                  ),
+                ),
+                TableCell(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('Status'),
+                  ),
+                ),
+                TableCell(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('Edit'),
+                  ),
+                ),
+              ],
+            ),
+
+            for (var user in users)
+              TableRow(
+                children: <Widget>[
+                  TableCell(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        '${user['last_name']}, ${user['first_name']}',
+                      ),
+                    ),
+                  ),
+                  TableCell(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(user['email']),
+                    ),
+                  ),
+                  TableCell(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(user['user_role']),
+                    ),
+                  ),
+                  TableCell(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(user['user_status']),
+                    ),
+                  ),
+                  TableCell(
+                    child: Padding(
+                      padding: EdgeInsets.all(4.0),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.edit, size: 20),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+          ],
+        ),
+      ),
+    );
+
+    /*
+    ListView(
       children: [
         for (var user in users)
           ListTile(
@@ -52,5 +153,7 @@ class _UsersScreenState extends State<UsersScreen> {
           ),
       ],
     );
+
+    */
   }
 }
