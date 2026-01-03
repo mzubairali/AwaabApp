@@ -39,7 +39,7 @@ class _UsersScreenState extends State<UsersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const count = 1;
+    int count = 1;
     return Scaffold(
       appBar: AppBar(title: Text('User Settings')),
       body: Padding(
@@ -99,13 +99,13 @@ class _UsersScreenState extends State<UsersScreen> {
               ],
             ),
 
-            for (var user in users)
+            for (var (index, user) in users.indexed)
               TableRow(
                 children: <Widget>[
                   TableCell(
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Text('$count'),
+                      child: Text('${index + 1}'),
                     ),
                   ),
                   TableCell(
