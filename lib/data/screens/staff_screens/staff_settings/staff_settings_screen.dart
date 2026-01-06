@@ -24,7 +24,7 @@ class _StaffSettingsScreenState extends State<StaffSettingsScreen> {
               Tab(text: 'Users'),
               //Tab(text: 'New User'),
               Tab(text: 'System Settings'),
-              Tab(text: 'Others'),
+              Tab(text: 'Site Settings'),
             ],
           ),
         ),
