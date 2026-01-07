@@ -13,6 +13,9 @@ class UsersScreen extends StatefulWidget {
 
 class _UsersScreenState extends State<UsersScreen> {
   final supabase = Supabase.instance.client;
+  bool userDetail = false;
+  String userID = 'null';
+
   List<Map<String, dynamic>> users = [];
 
   getUsers() async {
@@ -42,9 +45,8 @@ class _UsersScreenState extends State<UsersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool userDetail = false;
     bool isSelected = false;
-    String userID = 'null';
+
     return ListView(
       children: [
         //leading text for first table
@@ -88,6 +90,7 @@ class _UsersScreenState extends State<UsersScreen> {
                       isSelected = value!;
                       userDetail = true;
                       userID = user['user_id'];
+                      //print('$userID index $index selected/not $userDetail');
                     });
                   },
                   cells: [
@@ -98,7 +101,9 @@ class _UsersScreenState extends State<UsersScreen> {
                     DataCell(Text('${user['e-mail']}')),
                     DataCell(Text('${user['user_status']}')),
                     DataCell(Text('${user['user_role']}')),
-                    DataCell(Text('Edit')),
+                    DataCell(
+                      IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
+                    ),
                   ],
                 ),
             ],
